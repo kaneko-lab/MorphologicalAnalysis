@@ -66,7 +66,7 @@ class RDRPOSTaggerThaiAnalyzer implements MASAnalyzer{
 
             $wordAndPartArray = preg_split('/\//', $wordAndPartString);
             if(empty($wordAndPartArray[0]))
-                break;
+                continue;
 
             $word = $wordAndPartArray[0];
             $part = $wordAndPartArray[1];
