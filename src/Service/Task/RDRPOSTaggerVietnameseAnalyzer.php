@@ -14,7 +14,7 @@ use App\ValueObject\MAResult;
 use Cake\Core\Configure;
 
 
-class RDRPOSTaggerEnAnalyzer implements MASAnalyzer{
+class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
     private $_isSuccess = false;
     private $_targetMessage = null;
     private $_errorMessage = null;
@@ -41,21 +41,21 @@ class RDRPOSTaggerEnAnalyzer implements MASAnalyzer{
             $result = $this->getTestResult();
         }else{
             //Create file on tmp directory
-            $tmpFolder=TMP.DS.LANG_TYPE::ENGLISH;
+            $tmpFolder=TMP.DS.LANG_TYPE::VIETNAMESE;
             $fname=uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
             fwrite($fp,$this->_targetMessage);
             fclose($fp);
+
             $SCRDRtaggerDir = "/usr/local/src/RDRPOSTagger";
             $pSCRDRtaggerDir = $SCRDRtaggerDir.DS."pSCRDRtagger";
-            $cmd = "cd {$pSCRDRtaggerDir} && /usr/local/bin/python2.7 {$pSCRDRtaggerDir}/RDRPOSTaggerPrint.py tag {$SCRDRtaggerDir}/Models/POS/English.RDR {$SCRDRtaggerDir}/Models/POS/English.DICT " .$inputFile;
+            $cmd = "cd {$pSCRDRtaggerDir} && /usr/local/bin/python2.7 {$pSCRDRtaggerDir}/RDRPOSTaggerPrint.py tag {$SCRDRtaggerDir}/Models/POS/Vietnamese.RDR {$SCRDRtaggerDir}/Models/POS/Vietnamese.DICT " .$inputFile;
             $result = shell_exec($cmd);
             unlink($inputFile);
-
         }
 
-        $this->_result = new MAResult($this->_targetMessage,LANG_TYPE::ENGLISH);
+        $this->_result = new MAResult($this->_targetMessage,LANG_TYPE::VIETNAMESE);
         $this->_result->setOriginalAnalysisResult($result);
         //Create MAResult
         //1.Explode by new line - Delete new line.

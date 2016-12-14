@@ -13,4 +13,6 @@ class LANG_TYPE {
     const JAPANESE = "ja";
     const KOREAN = "ko";
     const ENGLISH = "en";
+    const VIETNAMESE = "vi";
+    const THAI = "th";
 }
