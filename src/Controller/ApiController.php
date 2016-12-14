@@ -62,7 +62,6 @@ class ApiController extends AppController
         $auth = "Xidkexo121xlaAadkxidg";
 
         $lang = $this->request->data('lang');
-
         $message = $this->request->data('message');
 
         $authService = new AuthService();

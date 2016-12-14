@@ -13,6 +13,7 @@ use App\Constant\LANG_TYPE;
 use App\Constant\RESULT_CODE;
 use App\Service\Task\MASAnalyzer;
 use App\Service\Task\MecabAnalyzer;
+use App\Service\Task\MecabKoAnalyzer;
 use App\ValueObject\ServiceResult;
 
 class MorphologicalAnalysisService implements  Service{
@@ -78,7 +79,8 @@ class MorphologicalAnalysisService implements  Service{
         switch ($lang){
             case LANG_TYPE::JAPANESE:
                 return new MecabAnalyzer($message);
-
+            case LANG_TYPE::KOREAN:
+                return new MecabKoAnalyzer($message);
             default :
                 return null;
         }
