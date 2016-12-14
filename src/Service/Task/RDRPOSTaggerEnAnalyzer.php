@@ -41,8 +41,8 @@ class RDRPOSTaggerEnAnalyzer implements MASAnalyzer{
             $result = $this->getTestResult();
         }else{
             //Create file on tmp directory
-            $tmpFolder=TMP.DS.LANG_TYPE::ENGLISH;
-            $fname=uniqid().'.wd';
+            $tmpFolder=TMP;
+            $fname=LANG_TYPE::ENGLISH.'_'.uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
             fwrite($fp,$this->_targetMessage);

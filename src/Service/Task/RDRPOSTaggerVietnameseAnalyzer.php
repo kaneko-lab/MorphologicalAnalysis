@@ -41,8 +41,8 @@ class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
             $result = $this->getTestResult();
         }else{
             //Create file on tmp directory
-            $tmpFolder=TMP.DS.LANG_TYPE::VIETNAMESE;
-            $fname=uniqid().'.wd';
+            $tmpFolder=TMP;
+            $fname=LANG_TYPE::VIETNAMESE.'_'.uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
             fwrite($fp,$this->_targetMessage);
