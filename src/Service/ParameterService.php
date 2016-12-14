@@ -27,6 +27,8 @@ class ParameterService implements Service{
             case LANG_TYPE::ENGLISH: $parameterChecking = true; break;
             case LANG_TYPE::JAPANESE: $parameterChecking = true; break;
             case LANG_TYPE::KOREAN:$parameterChecking = true; break;
+            case LANG_TYPE::VIETNAMESE:$parameterChecking = true; break;
+            case LANG_TYPE::THAI:$parameterChecking = true; break;
             default : $parameterChecking = false; break;
         }
 
