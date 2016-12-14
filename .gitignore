@@ -1,0 +1,6 @@
+
+
+.idea/*
+logs/*
+config/app.php
+tmp/*
