@@ -9,6 +9,7 @@
 namespace App\Service;
 
 
+use App\Constant\LANG_TYPE;
 use App\Constant\RESULT_CODE;
 use App\ValueObject\ServiceResult;
 
@@ -23,8 +24,9 @@ class ParameterService implements Service{
      */
     public function checkLanguage($lang){
         switch ($lang)  {
-            case 'en': $parameterChecking = true; break;
-            case 'ko': $parameterChecking = true; break;
+            case LANG_TYPE::ENGLISH: $parameterChecking = true; break;
+            case LANG_TYPE::JAPANESE: $parameterChecking = true; break;
+            case LANG_TYPE::KOREAN:$parameterChecking = true; break;
             default : $parameterChecking = false; break;
         }
 

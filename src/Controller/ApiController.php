@@ -62,12 +62,8 @@ class ApiController extends AppController
         $auth = "Xidkexo121xlaAadkxidg";
 
         $lang = $this->request->data('lang');
-        $lang = "en";
 
         $message = $this->request->data('message');
-        $message = "Did you buy the computer?";
-
-
 
         $authService = new AuthService();
         if(!$authService->isValidAuth($auth)){
@@ -77,8 +73,8 @@ class ApiController extends AppController
         $morphologicalAnalysisService = new MorphologicalAnalysisService();
         $morphologicalAnalysisService->setLang($lang);
         $morphologicalAnalysisService->setMessage($message);
-
         $morphologicalAnalysisService->doAnalysis();
+
         return $this->responseResult($morphologicalAnalysisService->getServiceResult());
 
     }

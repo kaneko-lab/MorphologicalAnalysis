@@ -21,6 +21,10 @@ class RESULT_DESC {
 
             case RESULT_CODE::MESSAGE_IS_NULL : return "Message can not be null.";
 
+            case RESULT_CODE::CANNOT_FIND_ANALYZER : return "Cannot find analyzer. Check your language.";
+
+            case RESULT_CODE::FAILED_TO_EXECUTE_ANALYZER: return "Failed to execute analyzer. See log for detail.";
+
             /*
             case RESULT_CODE::SUCCESS: return "Successfully finished your request.";
             case RESULT_CODE::SUCCESS: return "Successfully finished your request.";
