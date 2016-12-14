@@ -45,7 +45,7 @@ class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
             $fname=LANG_TYPE::VIETNAMESE.'_'.uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
-            fwrite($fp,$this->_targetMessage);
+            fwrite($fp,str_replace('/','',$this->_targetMessage));
             fclose($fp);
 
             $SCRDRtaggerDir = "/usr/local/src/RDRPOSTagger";

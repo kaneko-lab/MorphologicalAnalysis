@@ -45,7 +45,7 @@ class RDRPOSTaggerThaiAnalyzer implements MASAnalyzer{
             $fname=LANG_TYPE::THAI.'_'.uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
-            fwrite($fp,$this->_targetMessage);
+            fwrite($fp,str_replace('/','',$this->_targetMessage));
             fclose($fp);
 
             $SCRDRtaggerDir = "/usr/local/src/RDRPOSTagger";

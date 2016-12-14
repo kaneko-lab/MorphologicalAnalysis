@@ -45,7 +45,7 @@ class RDRPOSTaggerEnAnalyzer implements MASAnalyzer{
             $fname=LANG_TYPE::ENGLISH.'_'.uniqid().'.wd';
             $inputFile=$tmpFolder.DS.$fname;
             $fp=fopen($inputFile,"w");
-            fwrite($fp,$this->_targetMessage);
+            fwrite($fp,str_replace('/','',$this->_targetMessage));
             fclose($fp);
             $SCRDRtaggerDir = "/usr/local/src/RDRPOSTagger";
             $pSCRDRtaggerDir = $SCRDRtaggerDir.DS."pSCRDRtagger";
