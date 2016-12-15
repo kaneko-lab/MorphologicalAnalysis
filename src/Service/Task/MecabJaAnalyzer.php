@@ -26,7 +26,7 @@ class MecabJaAnalyzer extends  MASAnalyzer{
             //Get raw result
             $result = $this->getTestResult();
         }else{
-            $result = shell_exec('echo "'.$this->_targetMessage.'" | '.$cmdPath.'-F"%m\t%h,%H\n" -E"EOS\n" ');
+            $result = shell_exec('echo "'.$this->_targetMessage.'" | '.$cmdPath.' -F"%m\t%h,%H\n" -E"EOS\n" ');
         }
 
         $this->_result = new MAResult($this->_targetMessage,LANG_TYPE::JAPANESE);
