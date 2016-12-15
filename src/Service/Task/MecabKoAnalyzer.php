@@ -14,22 +14,7 @@ use App\ValueObject\MAResult;
 use Cake\Core\Configure;
 
 
-class MecabKoAnalyzer implements MASAnalyzer{
-    private $_isSuccess = false;
-    private $_targetMessage = null;
-    private $_errorMessage = null;
-    private $_result = null;
-    public function __construct($message){
-        $this->_targetMessage = $message;
-    }
-
-    public function isSuccess(){
-        return $this->_isSuccess;
-    }
-
-    public function getErrorMessage(){
-        return $this->_errorMessage;
-    }
+class MecabKoAnalyzer extends  MASAnalyzer{
 
 
     public function execute(){
@@ -45,6 +30,10 @@ class MecabKoAnalyzer implements MASAnalyzer{
 
         $this->_result = new MAResult($this->_targetMessage,LANG_TYPE::JAPANESE);
         $this->_result->setOriginalAnalysisResult($result);
+
+        //Prepare Converter
+        $converter = new MecabKoConverter();
+
         //Create MAResult
         //1.Explode by new line
         $resultArray1 =  preg_split("/\\r\\n|\\r|\\n/", $result);
@@ -55,17 +44,14 @@ class MecabKoAnalyzer implements MASAnalyzer{
 
             $word = $wordAndPartArray[0];
             $part = $wordAndPartArray[1];
-            $this->_result->addWord($word,$part);
+            $partPOS = preg_split('/,/',$part)[0];
+            $this->_result->addWord($word,$part,$converter->convert($partPOS));
         }
         $this->_isSuccess = true;
 
     }
 
-    public function getResult(){
-        return $this->_result;
-    }
-
-    private function getTestResult(){
+    protected function getTestResult(){
         return "mecab	SL,*,*,*,*,*,*,*
 -	SY,*,*,*,*,*,*,*
 ko	SL,*,*,*,*,*,*,*

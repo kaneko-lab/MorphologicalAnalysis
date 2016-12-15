@@ -32,10 +32,10 @@ class MAResult {
     /**
      * @param $word
      * @param $part
+     * @param $simple
      */
-    public function addWord($word,$part){
-        $this->_wordList[]=array('WORD'=>$word,'PART'=>$part);
-
+    public function addWord($word,$part,$simple){
+        $this->_wordList[]=array('WORD'=>$word,'PART'=>$part,'SIMPLE'=>$simple);
     }
 
     /**

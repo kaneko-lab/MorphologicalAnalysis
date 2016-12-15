@@ -14,23 +14,7 @@ use App\ValueObject\MAResult;
 use Cake\Core\Configure;
 
 
-class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
-    private $_isSuccess = false;
-    private $_targetMessage = null;
-    private $_errorMessage = null;
-    private $_result = null;
-    public function __construct($message){
-        $this->_targetMessage = $message;
-    }
-
-    public function isSuccess(){
-        return $this->_isSuccess;
-    }
-
-    public function getErrorMessage(){
-        return $this->_errorMessage;
-    }
-
+class RDRPOSTaggerVietnameseAnalyzer extends  MASAnalyzer{
 
     public function execute(){
         //Run CMD
@@ -60,6 +44,7 @@ class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
         //Create MAResult
         //1.Explode by new line - Delete new line.
         $resultArray1 =  preg_split('/\s+/', $result);
+        //Todo create converter.
 
         foreach($resultArray1 as $wordAndPartString){
 
@@ -69,17 +54,13 @@ class RDRPOSTaggerVietnameseAnalyzer implements MASAnalyzer{
 
             $word = $wordAndPartArray[0];
             $part = $wordAndPartArray[1];
-            $this->_result->addWord($word,$part);
+            $this->_result->addWord($word,$part,$part);
         }
         $this->_isSuccess = true;
 
     }
 
-    public function getResult(){
-        return $this->_result;
-    }
-
-    private function getTestResult(){
+    protected function getTestResult(){
         return "This/DT is/VBZ english/NN test./NN";
     }
 

@@ -12,8 +12,9 @@ namespace App\Service;
 use App\Constant\LANG_TYPE;
 use App\Constant\RESULT_CODE;
 use App\Service\Task\MASAnalyzer;
-use App\Service\Task\MecabAnalyzer;
+use App\Service\Task\MecabJaAnalyzer;
 use App\Service\Task\MecabKoAnalyzer;
+use App\Service\Task\MecabKoConverter;
 use App\Service\Task\RDRPOSTaggerEnAnalyzer;
 use App\Service\Task\RDRPOSTaggerThaiAnalyzer;
 use App\Service\Task\RDRPOSTaggerVietnameseAnalyzer;
@@ -80,7 +81,7 @@ class MorphologicalAnalysisService implements  Service{
      */
     private function getCurrentAnalyser($lang,$message){
         switch ($lang){
-            case LANG_TYPE::JAPANESE: return new MecabAnalyzer($message);
+            case LANG_TYPE::JAPANESE: return new MecabJaAnalyzer($message);
             case LANG_TYPE::KOREAN: return new MecabKoAnalyzer($message);
             case LANG_TYPE::ENGLISH: return new RDRPOSTaggerEnAnalyzer($message);
             case LANG_TYPE::VIETNAMESE : return new RDRPOSTaggerVietnameseAnalyzer($message);
