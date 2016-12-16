@@ -44,8 +44,8 @@ class RDRPOSTaggerVietnameseAnalyzer extends  MASAnalyzer{
         //Create MAResult
         //1.Explode by new line - Delete new line.
         $resultArray1 =  preg_split('/\s+/', $result);
-        //Todo create converter.
 
+        $converter = new RDRPOSTaggerViConverter();
         foreach($resultArray1 as $wordAndPartString){
 
             $wordAndPartArray = preg_split('/\//', $wordAndPartString);
@@ -54,7 +54,7 @@ class RDRPOSTaggerVietnameseAnalyzer extends  MASAnalyzer{
 
             $word = $wordAndPartArray[0];
             $part = $wordAndPartArray[1];
-            $this->_result->addWord($word,$part,$part);
+            $this->_result->addWord($word,$part,$converter->convert($part));
         }
         $this->_isSuccess = true;
 

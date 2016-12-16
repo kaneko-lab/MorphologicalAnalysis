@@ -48,6 +48,7 @@ class RDRPOSTaggerThaiAnalyzer extends  MASAnalyzer{
         $resultArray1 =  preg_split('/\s+/', $result);
 
         //todo create converter.
+        $converter = new RDRPOSTaggerThConverter();
         foreach($resultArray1 as $wordAndPartString){
 
             $wordAndPartArray = preg_split('/\//', $wordAndPartString);
@@ -56,7 +57,7 @@ class RDRPOSTaggerThaiAnalyzer extends  MASAnalyzer{
 
             $word = $wordAndPartArray[0];
             $part = $wordAndPartArray[1];
-            $this->_result->addWord($word,$part,$part);
+            $this->_result->addWord($word,$part,$converter->convert($part));
         }
         $this->_isSuccess = true;
 
